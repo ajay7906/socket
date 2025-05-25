@@ -19,7 +19,7 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB Connection
-mongoose.connect('mongodb://localhost:27017/fruit-click-game', {
+mongoose.connect('mongodb://localhost:27017/click-game', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -41,7 +41,7 @@ const authenticate = async (req, res, next) => {
   if (!token) return res.status(401).json({ message: 'No token provided' });
 
   try {
-    const decoded = jwt.verify(token, 'secret_key');
+    const decoded = jwt.verify(token, 'ABCD1234'); // Use a secure secret key in production
     req.user = decoded;
     next();
   } catch (error) {
@@ -72,7 +72,7 @@ app.post('/api/auth/login', async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
 
-    const token = jwt.sign({ id: user._id, role: user.role }, 'secret_key', { expiresIn: '1h' });
+    const token = jwt.sign({ id: user._id, role: user.role }, 'ABCD1234', { expiresIn: '24h' });
     res.json({ token, role: user.role });
   } catch (error) {
     res.status(500).json({ message: 'Server error' });
