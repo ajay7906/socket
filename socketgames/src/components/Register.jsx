@@ -1,3 +1,6 @@
+
+
+
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -20,48 +23,77 @@ function Register() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
-        <form onSubmit={handleRegister}>
-          <div className="mb-4">
-            <label className="block text-gray-700">Email</label>
+    <div className="min-h-screen bg-gradient-to-br from-blue-400 via-purple-400 to-pink-400 flex items-center justify-center p-4">
+      <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 shadow-2xl w-full max-w-md transform transition-all hover:shadow-3xl">
+        <div className="flex flex-col items-center mb-8">
+          <h1 className="text-4xl font-extrabold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            Create Account
+          </h1>
+          <p className="mt-2 text-gray-200">Join our community</p>
+        </div>
+
+        <form onSubmit={handleRegister} className="space-y-6">
+          <div>
+            <label className="block text-sm font-medium text-gray-200 mb-2">
+              Email Address
+            </label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-3 py-2 border rounded-lg"
+              className="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent transition-all"
+              placeholder="Enter your email"
               required
             />
           </div>
-          <div className="mb-4">
-            <label className="block text-gray-700">Password</label>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-200 mb-2">
+              Password
+            </label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3 py-2 border rounded-lg"
+              className="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent transition-all"
+              placeholder="Create a password"
               required
             />
           </div>
-          <div className="mb-6">
-            <label className="block text-gray-700">Role</label>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-200 mb-2">
+              Select Role
+            </label>
             <select
               value={role}
               onChange={(e) => setRole(e.target.value)}
-              className="w-full px-3 py-2 border rounded-lg"
+              className="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent transition-all appearance-none"
             >
-              <option value="player">Player</option>
-              <option value="admin">Admin</option>
+              <option value="player" className="bg-gray-700">Player</option>
+              <option value="admin" className="bg-gray-700">Admin</option>
             </select>
           </div>
-          <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">
-            Register
+
+          <button
+            type="submit"
+            className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white py-3 px-4 rounded-lg font-semibold transform transition-all duration-300 hover:scale-[1.01] shadow-lg hover:shadow-xl"
+          >
+            Get Started
           </button>
         </form>
-        <p className="mt-4 text-center">
-          Already have an account? <a href="/login" className="text-blue-500">Login</a>
-        </p>
+
+        <div className="mt-6 text-center">
+          <p className="text-gray-200">
+            Already have an account?{' '}
+            <a
+              href="/login"
+              className="font-semibold text-blue-200 hover:text-white underline hover:no-underline transition-colors"
+            >
+              Sign in
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   );
